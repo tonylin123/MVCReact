@@ -1,8 +1,12 @@
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddMvc();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(100);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -15,7 +19,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();
