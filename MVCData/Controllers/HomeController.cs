@@ -6,27 +6,26 @@ namespace MVCData.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
 
         public IActionResult Index()
         {
-            return View();
-        }
+            if (PersonViewModel.listOfPeople.Count == 0)
+                PersonViewModel.GeneratePeople();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+            PersonViewModel vm = new PersonViewModel();
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+            vm.tempList = PersonViewModel.listOfPeople;
+
+            return View(vm);
+        }
+        public IActionResult About()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            ViewBag.Message = "This is a message from the controller!";
+            return View();
         }
     }
 }

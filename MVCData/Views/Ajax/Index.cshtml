@@ -1,0 +1,20 @@
+﻿<label>Id for details: </label>
+<input type="text" id="id" name="id" />
+<button onclick="GetDetails()" id="details" type="submit">Details</button>
+
+<div id="div-partial"></div>
+
+<script>
+function GetDetails() {
+    var inputId = $("#id").val();
+    //var inputId = document.getElementById("id")
+
+    $.ajax({
+        type: "POST",
+        url: "Ajax/GetDetails?id=" + inputId,
+        success: function(response) {
+            $("#div-partial").html(response);
+        }
+    });
+}
+</script>
