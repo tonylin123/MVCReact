@@ -74,14 +74,15 @@
         }
     </tbody>
 </table>
-
+<div>
 <div class="row">
-    <h6 scope="col">Name</h6>
-    <h6 class="col">Telephone</h6>
-    <h6 class="col">City</h6>
-    <h6 class="col"> </h6>
+    <div class="col">Name</div>
+     <div class="col">Telephone</div>
+   <div class="col">City</div>
+    <div class="col"></div>
 </div>
 @foreach (Person1 person in Model.People.List)
 {
     <partial name="_listPeoplePartial" model="person" />
 }
+</div>
