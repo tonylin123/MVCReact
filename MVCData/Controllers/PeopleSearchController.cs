@@ -41,7 +41,7 @@ namespace MVCData.Controllers
             }
             else
             {
-                // return supplied info to view to keep form fields filled in
+               
                 viewModels.CreatePerson.Name = person.Name;
                 viewModels.CreatePerson.Phone = person.Phone;
                 viewModels.CreatePerson.City = person.City;

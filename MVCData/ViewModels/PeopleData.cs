@@ -4,11 +4,11 @@
     {
         public static List<Person1> List { get; set; } = new List<Person1>()
         {
-            new Person1("Thor Odinson", "0123 456789", "New Asgard"),
-            new Person1("Erik Selvig", "1234 567890", "Stockholm"),
-            new Person1("Darcy Lewis", "2345 678901", "New York"),
-            new Person1("Jane Foster", "3456 789012", "New York"),
-            new Person1("Loki Odinson", "4567 890123", "Valhalla"),
+            new Person1("Jake Paul", "1232", "ManCity"),
+            new Person1("Tony Stark", "12345", "Gothenburg"),
+            new Person1("Captain America", "3213213", "NewYork"),
+            new Person1("Flash Man", "312312", "Washington"),
+            
         };
     }
 }
