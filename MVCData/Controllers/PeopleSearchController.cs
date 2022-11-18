@@ -55,11 +55,21 @@ namespace MVCData.Controllers
         public IActionResult DeletePerson(string name)
         {
             PCViewModels viewModels = new()
-            {
-                People = PeopleModel.DeletePerson(name)
-            };
+           {
+               People = PeopleModel.DeletePerson(name)
+           };
 
-            return View("Index", viewModels);
+           return View("Index", viewModels);
+        }
+        public IActionResult Delete(string name)
+        {
+            var personToDelete = PersonViewModel.listOfPeople.FirstOrDefault(x => x.Name == name);
+            if (personToDelete != null)
+            {
+                PersonViewModel.listOfPeople.Remove(personToDelete);
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }
