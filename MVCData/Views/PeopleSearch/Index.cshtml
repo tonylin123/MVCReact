@@ -26,7 +26,9 @@
     <div asp-validation-summary="All" class="error-message"></div>
     <fieldset>
         <legend>Add a person</legend>
-
+        <p>
+            <a asp-action="Create">Add new person</a>
+        </p>
         <div class="field">
             <label asp-for="CreatePerson.Name" for="name"></label>
             <input asp-for="CreatePerson.Name" type="text" id="name" name="name" value="@Model.CreatePerson.Name">
@@ -72,8 +74,8 @@
         }
     </tbody>
 </table>
-<h2>Show data as partial:</h2>
-<div class="rowperson">
+
+<div class="row">
     <h6 scope="col">Name</h6>
     <h6 class="col">Telephone</h6>
     <h6 class="col">City</h6>

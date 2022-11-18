@@ -29,6 +29,29 @@ namespace MVCData.Controllers
             return View("Index", viewModels);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(CreatePersonViewModel person)
+        {
+            PCViewModels viewModels = new();
+
+            if (ModelState.IsValid)
+            {
+                viewModels.People = PeopleModel.CreatePerson(person);
+            }
+            else
+            {
+
+                viewModels.CreatePerson.Name = person.Name;
+                viewModels.CreatePerson.Phone = person.Phone;
+                viewModels.CreatePerson.City = person.City;
+            }
+            return RedirectToAction("Index", viewModels);
+        }
+
 
         [HttpPost]
         public IActionResult CreatePerson(CreatePersonViewModel person)
@@ -49,7 +72,7 @@ namespace MVCData.Controllers
 
             return View("Index", viewModels);
         }
-
+     
 
         [HttpGet]
         public IActionResult DeletePerson(string name)
