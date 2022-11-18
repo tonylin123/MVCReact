@@ -61,15 +61,15 @@ namespace MVCData.Controllers
 
            return View("Index", viewModels);
         }
-        public IActionResult Delete(string name)
-        {
-            var personToDelete = PersonViewModel.listOfPeople.FirstOrDefault(x => x.Name == name);
-            if (personToDelete != null)
-            {
-                PersonViewModel.listOfPeople.Remove(personToDelete);
-            }
+        //public IActionResult Delete(string name)
+        //{
+        //    var personToDelete = PersonViewModel.listOfPeople.FirstOrDefault(x => x.Name == name);
+        //    if (personToDelete != null)
+        //    {
+        //        PersonViewModel.listOfPeople.Remove(personToDelete);
+        //    }
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
     }
 }

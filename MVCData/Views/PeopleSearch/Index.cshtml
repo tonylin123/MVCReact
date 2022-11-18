@@ -48,7 +48,9 @@
         <input type="submit" name="submit" value="Create" class="submit">
     </fieldset>
 </form>
-<h2>Show data as table:</h2>
+
+
+
 <table class="table people">
     <thead>
         <tr>
@@ -65,22 +67,19 @@
                 <td>@person.Name</td>
                 <td>@person.Phone</td>
                 <td>@person.City</td>
-                <td><a class="delete" asp-controller="People" asp-action="DeletePerson" asp-route-name=@person.Name>Delete</a></td>
+                <td><a class="delete" asp-controller="PeopleSearch" asp-action="DeletePerson" asp-route-name=@person.Name>Delete</a></td>
             </tr>
         }
     </tbody>
 </table>
-
 <h2>Show data as partial:</h2>
-<div class="row person">
-    <h6 class="col">Name</h6>
-    <h6 class="col">Phone</h6>
+<div class="rowperson">
+    <h6 scope="col">Name</h6>
+    <h6 class="col">Telephone</h6>
     <h6 class="col">City</h6>
     <h6 class="col"> </h6>
 </div>
-<tbody>
-        @foreach (Person1 person in Model.People.List)
-        {
-            <partial name="_listPeoplePartial" model="@person" />
-        }
-
+@foreach (Person1 person in Model.People.List)
+{
+    <partial name="_listPeoplePartial" model="person" />
+}
