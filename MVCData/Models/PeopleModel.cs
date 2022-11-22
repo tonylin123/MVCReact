@@ -1,4 +1,5 @@
 ﻿using MVCData.ViewModels;
+using MVCData.Models;
 
 namespace MVCData.Models
 {
@@ -29,8 +30,9 @@ namespace MVCData.Models
 
         public static PeopleViewModel CreatePerson(CreatePersonViewModel person)
         {
-            Person newPerson = new(person.Name, person.Phone, person.City);
-
+            
+            Person newPerson = new(Guid.NewGuid().ToString(), person.Name, person.Phone, person.City);
+           
             PeopleData.List.Add(newPerson);
 
             PeopleViewModel viewModel = new()

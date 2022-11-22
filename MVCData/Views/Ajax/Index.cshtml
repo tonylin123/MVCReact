@@ -5,16 +5,16 @@
 <div id="div-partial"></div>
 
 <script>
-function GetDetails() {
-    var inputNAME = $("#name").val();
-    //var inputId = document.getElementById("id")
+    function GetDetails() {
+        var inputId = $("#id").val();
+        //var inputId = document.getElementById("id")
 
-    $.ajax({
-        type: "POST",
-        url: "Ajax/GetDetails?name=" + inputNAME,
-        success: function(response) {
-            $("#div-partial").html(response);
-        }
-    });
-}
+        $.ajax({
+            type: "POST",
+            url: "Ajax/GetDetails?id=" + inputId,
+            success: function (response) {
+                $("#div-partial").html(response);
+            }
+        });
+    }
 </script>

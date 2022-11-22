@@ -10,6 +10,7 @@
 
 <div>
 <div class="row">
+     <div class="col">Id</div>
     <div class="col">Name</div>
     <div class="col">Telephone</div>
     <div class="col">City</div>
@@ -17,6 +18,6 @@
 </div>
     @foreach (Person person in PeopleData.List)
     {
-    <partial name="_listPeoplePartial" model="person" />
+        <partial name="_personPartial" model="person" />
 }
 </div>

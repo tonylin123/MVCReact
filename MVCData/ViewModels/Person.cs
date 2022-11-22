@@ -2,13 +2,14 @@
 {
     public class Person
     {
-        public Person(string name, string phone, string city)
+        public Person(string id,string name, string phone, string city)
         {
+            Id = id;
             Name = name;
             Phone = phone;
             City = city;
         }
-
+        public string Id { get; set; }
         public string Name { get; set; } 
 
         public string Phone { get; set; } 

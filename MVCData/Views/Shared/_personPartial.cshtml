@@ -1,8 +1,15 @@
 ﻿@model Person
-
+@if (Model == null)
+{
+    <div class="col">@ViewBag.ERROR</div>
+}
+else
+{
 <div class="row">
+    <div class="col">@Model.Id</div>
     <div class="col">@Model.Name</div>
     <div class="col">@Model.Phone</div>
-    <div class="col">@Model.City</div>   
+    <div class="col">@Model.City</div>
     <div class="col"><a class="btn btn-danger" asp-controller="People" asp-action="DeletePerson" asp-route-name="@Model.Name" >Delete</a></div>
 </div>
+}

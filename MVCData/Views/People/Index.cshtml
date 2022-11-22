@@ -63,7 +63,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Person person in Model.People.List)
+        @foreach (Person person in PeopleData.List)
         {
             <tr class="person">
                 <td>@person.Name</td>
@@ -81,7 +81,7 @@
     <div class="col">City</div>
     <div class="col"></div>
 </div>
-@foreach (Person person in Model.People.List)
+    @foreach (Person person in PeopleData.List)
 {
     <partial name="_listPeoplePartial" model="person" />
 }

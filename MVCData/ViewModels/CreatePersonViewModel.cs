@@ -9,7 +9,7 @@ namespace MVCData.ViewModels
         public string Name { get; set; } 
 
         [Required]
-        [Display(Name = "Telephone number")]
+        [Display(Name = "Telephone numbers")]
         public string Phone { get; set; } 
 
         [Required]
