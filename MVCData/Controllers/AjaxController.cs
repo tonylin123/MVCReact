@@ -15,7 +15,7 @@ namespace MVCData.Controllers
         public IActionResult GetPeople()
         {
             PeopleViewModel viewModel = PeopleModel.List();
-            return View("_GetDetails", viewModel);
+            return View("_personPartial", viewModel);
         }
 
         [HttpPost]
