@@ -2,12 +2,12 @@
 {
     public static class PeopleData
     {
-        public static List<Person1> List { get; set; } = new List<Person1>()
+        public static List<Person> List { get; set; } = new List<Person>()
         {
-            new Person1("Jake Paul", "1232", "ManCity"),
-            new Person1("Tony Stark", "12345", "Gothenburg"),
-            new Person1("Captain America", "3213213", "NewYork"),
-            new Person1("Flash Man", "312312", "Washington"),
+            new Person("Jake Paul", "1232", "ManCity"),
+            new Person("Tony Stark", "12345", "Gothenburg"),
+            new Person("Captain America", "3213213", "NewYork"),
+            new Person("Flash Man", "312312", "Washington"),
             
         };
     }

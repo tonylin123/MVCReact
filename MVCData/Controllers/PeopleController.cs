@@ -1,46 +1,98 @@
-﻿using MVCData.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MVCData.ViewModels;
+using MVCData.Models;
 
 namespace MVCData.Controllers
 {
     public class PeopleController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
-            if (PersonViewModel.listOfPeople.Count == 0)
-                PersonViewModel.GeneratePeople();
+            PCViewModels viewModels = new()
+            {
+                People = PeopleModel.List()
+            };
 
-            PersonViewModel vm = new PersonViewModel();
-
-            vm.tempList = PersonViewModel.listOfPeople;
-
-            return View(vm);
+            return View(viewModels);
         }
+
+
+        [HttpPost]
+        public IActionResult Search(string search)
+        {
+            PCViewModels viewModels = new()
+            {
+                People = PeopleModel.Search(search)
+            };
+
+            return View("Index", viewModels);
+        }
+
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Person person)
-        {            
-            if(person != null)
-            {
-                person.Id = Guid.NewGuid().ToString();
-                PersonViewModel.listOfPeople.Add(person);
-            }
-
-            return RedirectToAction("Index");
-        }
-
-        public IActionResult Delete(string id)
+        public IActionResult Create(CreatePersonViewModel person)
         {
-            var personToDelete = PersonViewModel.listOfPeople.FirstOrDefault(x => x.Id == id);
-            if(personToDelete != null)
+            PCViewModels viewModels = new();
+
+            if (ModelState.IsValid)
             {
-                PersonViewModel.listOfPeople.Remove(personToDelete);
+                viewModels.People = PeopleModel.CreatePerson(person);
+            }
+            else
+            {
+
+                viewModels.CreatePerson.Name = person.Name;
+                viewModels.CreatePerson.Phone = person.Phone;
+                viewModels.CreatePerson.City = person.City;
+            }
+            return RedirectToAction("Index", viewModels);
+        }
+
+
+        [HttpPost]
+        public IActionResult CreatePerson(CreatePersonViewModel person)
+        {
+            PCViewModels viewModels = new();
+
+            if (ModelState.IsValid)
+            {
+                viewModels.People = PeopleModel.CreatePerson(person);
+            }
+            else
+            {
+               
+                viewModels.CreatePerson.Name = person.Name;
+                viewModels.CreatePerson.Phone = person.Phone;
+                viewModels.CreatePerson.City = person.City;
             }
 
-            return RedirectToAction("Index"); 
+            return View("Index", viewModels);
         }
+     
+
+        [HttpGet]
+        public IActionResult DeletePerson(string name)
+        {
+            PCViewModels viewModels = new()
+           {
+               People = PeopleModel.DeletePerson(name)
+           };
+
+           return View("Index", viewModels);
+        }
+        //public IActionResult Delete(string name)
+        //{
+        //    var personToDelete = PersonViewModel.listOfPeople.FirstOrDefault(x => x.Name == name);
+        //    if (personToDelete != null)
+        //    {
+        //        PersonViewModel.listOfPeople.Remove(personToDelete);
+        //    }
+
+        //    return RedirectToAction("Index");
+        //}
     }
 }

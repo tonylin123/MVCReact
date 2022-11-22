@@ -1,8 +1,8 @@
-﻿@model Person1
+﻿@model Person
 
 <div class="row">
     <div class="col">@Model.Name</div>
     <div class="col">@Model.Phone</div>
     <div class="col">@Model.City</div>   
-    <div class="col"><a class="delete" asp-controller="PeopleSearch" asp-action="DeletePerson" asp-route-name="@Model.Name">Delete</a></div>
+    <div class="col"><a class="delete" asp-controller="People" asp-action="DeletePerson" asp-route-name="@Model.Name">Delete</a></div>
 </div>

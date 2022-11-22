@@ -16,31 +16,20 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Index</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="Home" asp-action="About">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Check" asp-action="CheckAge">Check age</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Check" asp-action="SetSession">Set session</a>
-                    </li>
-                    @if (Context.Session.GetString("Session") != null)
-                    {
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Check" asp-action="GetSession">Get session</a>
-                        </li>
-                    }
+                    
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="People" asp-action="Index">People</a>
                     </li>
+
                      <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="Ajax" asp-action="Index">Ajax</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="PeopleSearch" asp-action="Index">PeopleSearch</a>
-                    </li>
+                    
+                   
                 </ul>
             </div>
         </nav>

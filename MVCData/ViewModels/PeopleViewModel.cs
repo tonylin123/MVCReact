@@ -2,7 +2,7 @@
 {
     public class PeopleViewModel
     {
-        public List<Person1> List { get; set; } = new List<Person1>();
+        public List<Person> List { get; set; } = new List<Person>();
 
         public string Search { get; set; } 
     }

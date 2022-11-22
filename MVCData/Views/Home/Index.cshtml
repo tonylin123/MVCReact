@@ -1,4 +1,5 @@
-﻿@model PersonViewModel
+﻿@model PeopleViewModel
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,15 +8,15 @@
 
 <h2>This is Index</h2>
 
-
+<div>
 <div class="row">
-    <h6 class="col">Id</h6>
-    <h6 class="col">Name</h6>
-    <h6 class="col">Age</h6>
-    <h6 class="col">Phone number</h6>
-    <h6 class="col"> </h6>
+    <div class="col">Name</div>
+    <div class="col">Telephone</div>
+    <div class="col">City</div>
+    <div class="col"></div>
 </div>
-@foreach (var person in Model.tempList)
-{
-    <partial name="_personPartial" model="person" />
+    @foreach (Person person in PeopleData.List)
+    {
+    <partial name="_listPeoplePartial" model="person" />
 }
+</div>

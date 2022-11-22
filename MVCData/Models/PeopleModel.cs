@@ -29,7 +29,7 @@ namespace MVCData.Models
 
         public static PeopleViewModel CreatePerson(CreatePersonViewModel person)
         {
-            Person1 newPerson = new(person.Name, person.Phone, person.City);
+            Person newPerson = new(person.Name, person.Phone, person.City);
 
             PeopleData.List.Add(newPerson);
 
@@ -60,25 +60,25 @@ namespace MVCData.Models
         }
 
 
-        private static bool ContainsKeyword(Person1 person, string keyword)
+        private static bool ContainsKeyword(Person person, string keyword)
         {
             return HasName(person, keyword) || HasPhonenumber(person, keyword) || LivesInCity(person, keyword);
         }
 
 
-        private static bool HasName(Person1 person, string name)
+        private static bool HasName(Person person, string name)
         {
             return person.Name.ToLower().Contains(name.ToLower());
         }
 
 
-        private static bool HasPhonenumber(Person1 person, string phonenumber)
+        private static bool HasPhonenumber(Person person, string phonenumber)
         {
             return person.Phone.ToLower().Contains(phonenumber.ToLower());
         }
 
 
-        private static bool LivesInCity(Person1 person, string city)
+        private static bool LivesInCity(Person person, string city)
         {
             return person.City.ToLower().Contains(city.ToLower());
         }

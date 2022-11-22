@@ -1,5 +1,6 @@
 ﻿using MVCData.Models;
 using Microsoft.AspNetCore.Mvc;
+using MVCData.ViewModels;
 
 namespace MVCData.Controllers
 {
@@ -10,12 +11,5 @@ namespace MVCData.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult GetDetails(string id)
-        {
-            Person person = PersonViewModel.listOfPeople.FirstOrDefault(x => x.Id == id);
-
-            return PartialView("_personPartial", person);
-        }
     }
 }

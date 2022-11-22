@@ -1,8 +1,8 @@
 ﻿namespace MVCData.ViewModels
 {
-    public class Person1
+    public class Person
     {
-        public Person1(string name, string phone, string city)
+        public Person(string name, string phone, string city)
         {
             Name = name;
             Phone = phone;

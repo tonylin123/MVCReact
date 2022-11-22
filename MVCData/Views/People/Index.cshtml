@@ -1,47 +1,88 @@
-﻿@model PersonViewModel
+﻿@using MVCData.ViewModels
+@model PCViewModels
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "People Search";
 }
 
-<h1>List of people</h1>
 
-<p>
-    <a asp-action="Create">Add new person</a>
-</p>
-<h2>Show data as table:</h2>
-<table class="table">
+
+<h1>People Search</h1>
+
+<form asp-controller="People" asp-action="Search" method="post" class="search people">
+    <fieldset>
+        <legend>Search for people</legend>
+
+        <label for="search">Search term:</label>
+        <input type="text" id="search" name="search" value="@Model.People.Search" required>
+
+        <input type="submit" name="submit" value="Search" class="submit">
+    </fieldset>
+</form>
+
+
+
+<form asp-controller="People" asp-action="CreatePerson" method="post" class="create person">
+    <div asp-validation-summary="All" class="error-message"></div>
+    <fieldset>
+        <legend>Add a person</legend>
+        <p>
+            <a asp-action="Create">Add new person</a>
+        </p>
+        <div class="field">
+            <label asp-for="CreatePerson.Name" for="name"></label>
+            <input asp-for="CreatePerson.Name" type="text" id="name" name="name" value="@Model.CreatePerson.Name">
+            <span asp-validation-for="CreatePerson.Name"></span>
+        </div>
+
+        <div class="field">
+            <label asp-for="CreatePerson.Phone" for="phone"></label>
+            <input asp-for="CreatePerson.Phone" type="text" id="phone" name="phone" value="@Model.CreatePerson.Phone">
+            <span asp-validation-for="CreatePerson.Phone"></span>
+        </div>
+
+        <div class="field">
+            <label asp-for="CreatePerson.City" for="city"></label>
+            <input asp-for="CreatePerson.City" type="text" id="city" name="city" value="@Model.CreatePerson.City">
+            <span asp-validation-for="CreatePerson.City"></span>
+        </div>
+
+        <input type="submit" name="submit" value="Create" class="submit">
+    </fieldset>
+</form>
+
+
+
+<table class="table people">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Phone number</th>
-            <th> </th>
+            <th scope="col">Name</th>
+            <th scope="col">Telephone</th>
+            <th scope="col">City</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var person in Model.tempList)
+        @foreach (Person person in Model.People.List)
         {
-            <tr>
-                <td>@person.Id</td>
+            <tr class="person">
                 <td>@person.Name</td>
-                <td>@person.Age</td>
-                <td>@person.PhoneNumber</td>
-                <td><a asp-action="Delete" asp-route-id=@person.Id class="btn btn-danger">Delete</a> </td>
+                <td>@person.Phone</td>
+                <td>@person.City</td>
+                <td><a class="delete" asp-controller="People" asp-action="DeletePerson" asp-route-name=@person.Name>Delete</a></td>
             </tr>
         }
     </tbody>
 </table>
-
-<h2>Show data as partial:</h2>
+<div>
 <div class="row">
-    <h6 class="col">Id</h6>
-    <h6 class="col">Name</h6>
-    <h6 class="col">Age</h6>
-    <h6 class="col">Phone number</h6>
-    <h6 class="col"> </h6>
+    <div class="col">Name</div>
+    <div class="col">Telephone</div>
+    <div class="col">City</div>
+    <div class="col"></div>
 </div>
-@foreach (var person in Model.tempList)
+@foreach (Person person in Model.People.List)
 {
-    <partial name="_personPartial" model="person" />
+    <partial name="_listPeoplePartial" model="person" />
 }
+</div>
