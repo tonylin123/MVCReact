@@ -1,11 +1,14 @@
 ﻿
 
+<div class="text-right">
+    <button class="btn btn-info" onclick="GetPeople()">Get People</button>
+</div>
 
-<div class="search-form">
+<div class="text-right">
 <label>Id for details: </label>
 <input type="text" id="id" name="id" />
 <button onclick="GetDetails()" id="details" type="submit">Details</button>
-<button onclick="DeletePerson()" id="delete" type="submit">delete</button>
+<button onclick="DeletePerson()" id="delete" type="submit">Delete</button>
 </div>
 <div id="div-partial"></div>
 
@@ -32,6 +35,17 @@
             url: "Ajax/DeletePerson?id=" + inputId,
             success: function (response) {
                 $("#div-partial").html(response);
+            }
+        })
+    }
+
+    function GetPeople() {
+        $.ajax({
+            url: "Ajax/PeopleList",
+            type: "GET",
+            success: function (response) {
+                $("#div-partial").html(response);
+                
             }
         })
     }

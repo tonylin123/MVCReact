@@ -31,7 +31,7 @@ namespace MVCData.Controllers
                 return Json(id + " was deleted, status: " + StatusCode(200).StatusCode);
             }
 
-            return Json("Error could not delete, status: " + StatusCode(400).StatusCode);
+            return Json("Error , status: " + StatusCode(400).StatusCode);
 
         }
         [HttpPost]
@@ -42,7 +42,7 @@ namespace MVCData.Controllers
 
             if (person == null)
             {
-                ViewBag.ERROR = "Person not found";
+                ViewBag.ERROR = "This Person Does Not Exist";
             }
             return View("_personPartial", person);
         }
