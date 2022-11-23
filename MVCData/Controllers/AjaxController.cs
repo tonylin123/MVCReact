@@ -44,7 +44,7 @@ namespace MVCData.Controllers
             {
                 ViewBag.ERROR = "This Person Does Not Exist";
             }
-            return View("_personPartial", person);
+            return View("_AjaxGetDetails", person);
         }
 
 
