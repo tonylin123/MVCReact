@@ -1,7 +1,12 @@
-﻿<label>Id for details: </label>
+﻿
+
+
+<div class="search-form">
+<label>Id for details: </label>
 <input type="text" id="id" name="id" />
 <button onclick="GetDetails()" id="details" type="submit">Details</button>
-
+<button onclick="DeletePerson()" id="delete" type="submit">delete</button>
+</div>
 <div id="div-partial"></div>
 
 <script>
@@ -15,6 +20,20 @@
             success: function (response) {
                 $("#div-partial").html(response);
             }
-        });
+        })
     }
+
+    function DeletePerson() {
+        var inputId = $("#id").val();
+        //var inputId = document.getElementById("id")
+
+        $.ajax({
+            type: "POST",
+            url: "Ajax/DeletePerson?id=" + inputId,
+            success: function (response) {
+                $("#div-partial").html(response);
+            }
+        })
+    }
+    
 </script>

@@ -1,4 +1,8 @@
 ﻿@model Person
+
+@{
+    Layout = null; // Prevent layout from being rendered twice
+}
 @if (Model == null)
 {
     <div class="col">@ViewBag.ERROR</div>
