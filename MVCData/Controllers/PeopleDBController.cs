@@ -15,7 +15,7 @@ namespace MVCData.Controllers
     }
 
 
-    private readonly ApplicationDBContext Database;
+     readonly ApplicationDBContext Database;
 
 
     [HttpGet]
@@ -88,15 +88,9 @@ namespace MVCData.Controllers
                 Database.SaveChanges();
             }
 
-        ViewModelsContainer viewModels = new()
-        {
-            People = new PeopleViewModel()
-            {
-                List = Database.People.ToList(),
-            }
-        };
 
-        return View("Index", viewModels);
-    }
+
+            return RedirectToAction("Index");
+        }
 }
 }

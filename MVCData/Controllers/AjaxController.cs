@@ -7,7 +7,7 @@ namespace MVCData.Controllers
 {
     public class AjaxController : Controller
     {
-        private readonly ApplicationDBContext Database;
+        readonly ApplicationDBContext Database;
         public AjaxController(ApplicationDBContext database)
         {
             Database = database;
