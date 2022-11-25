@@ -1,11 +1,17 @@
 ﻿using MVCData.Models;
 using Microsoft.AspNetCore.Mvc;
 using MVCData.ViewModels;
+using MVCData.Data;
 
 namespace MVCData.Controllers
 {
     public class AjaxController : Controller
     {
+        private readonly ApplicationDBContext Database;
+        public AjaxController(ApplicationDBContext database)
+        {
+            Database = database;
+        }
         public IActionResult Index()
         {
             
@@ -15,7 +21,10 @@ namespace MVCData.Controllers
 
         public IActionResult PeopleList()
         {
-            PeopleViewModel viewModel = PeopleModel.List();
+            PeopleViewModel viewModel = new()
+            {
+                List = Database.People.ToList()
+            };
             return View("_PeopleList", viewModel);
         }
 
@@ -23,11 +32,12 @@ namespace MVCData.Controllers
         public IActionResult DeletePerson(string id)
         {
             
-            var personToDelete = PeopleData.List.FirstOrDefault(p => p.Id == id);
+            var personToDelete = Database.People.FirstOrDefault(x => x.Id == id);
 
             if (personToDelete != null)
             {
-                PeopleData.List.Remove(personToDelete);
+                Database.People.Remove(personToDelete);
+                Database.SaveChanges();
                 return Json(id + " was deleted, status: " + StatusCode(200).StatusCode);
             }
 
@@ -38,7 +48,7 @@ namespace MVCData.Controllers
         public IActionResult GetDetails(string id)
         {
             
-            Person person = PeopleData.List.FirstOrDefault(x => x.Id == id);
+            Person person = Database.People.FirstOrDefault(x => x.Id == id);
 
             if (person == null)
             {

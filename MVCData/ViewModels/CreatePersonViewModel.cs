@@ -6,14 +6,14 @@ namespace MVCData.ViewModels
     {
         [Required]
         [Display(Name = "Enter your name")]
-        public string Name { get; set; } 
+        public string Name { get; set; } = string.Empty;
 
         [Required]
         [Display(Name = "Telephone numbers")]
-        public string Phone { get; set; } 
+        public string Phone { get; set; } = string.Empty;
 
         [Required]
         [Display(Name = "Enter your city")]
-        public string City { get; set; } 
+        public string City { get; set; } = string.Empty;
     }
 }
