@@ -15,7 +15,7 @@ namespace MVCData.Controllers
     }
 
 
-     readonly ApplicationDBContext Database;
+        private readonly ApplicationDBContext Database;
 
 
     [HttpGet]
@@ -57,10 +57,10 @@ namespace MVCData.Controllers
             People = new PeopleViewModel(),
             CreatePerson = new CreatePersonViewModel()
         };
-            ModelState.Remove("Id");
+            ModelState.Remove("ID");
             if (ModelState.IsValid)
         {
-             person.Id = Guid.NewGuid().ToString();
+             person.ID = Guid.NewGuid().ToString();
                
             Database.People.Add(person);
             Database.SaveChanges();

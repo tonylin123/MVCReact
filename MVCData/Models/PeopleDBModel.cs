@@ -1,5 +1,6 @@
 ﻿using MVCData.ViewModels;
 using MVCData.Models;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace MVCData.Models
 {
@@ -11,13 +12,25 @@ namespace MVCData.Models
         }
 
 
-        public static List<Person> GetPerson(List<Person> list, string id)
+        public static List<Person> GetPerson(List<Person> list, int id)
         {
-            IEnumerable<Person> people = from person in list where person.Id == id select person;
+            IEnumerable<Person> people = from person in list where person.ID == id select person;
             List<Person> match = people.ToList();
             return match;
         }
+        public static int GetCityID(EntityEntry<Person> personEntry)
+        {
+            var cityID = personEntry.Property("CityID").CurrentValue;
 
+            if (cityID == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return Convert.ToInt32(cityID);
+            }
+        }
 
         private static bool ContainsKeyword(Person person, string keyword)
         {
@@ -39,7 +52,7 @@ namespace MVCData.Models
 
         private static bool LivesInCity(Person person, string city)
         {
-            return person.City.ToLower().Contains(city.ToLower());
+            return person.City.Name.ToLower().Contains(city.ToLower());
         }
     }
 }

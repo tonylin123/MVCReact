@@ -16,3 +16,21 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+form.search.people,
+form.create.person {
+    margin-bottom: 3em;
+}
+
+    form.create.person .error-message ul {
+        color: red;
+    }
+
+    form.create.person field {
+        margin-bottom: auto;
+    }
+
+    form.create.person label {
+        display:inline-block;
+        width: 30%;
+    }

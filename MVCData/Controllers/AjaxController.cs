@@ -29,10 +29,10 @@ namespace MVCData.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeletePerson(string id)
+        public IActionResult DeletePerson(int id)
         {
             
-            var personToDelete = Database.People.FirstOrDefault(x => x.Id == id);
+            var personToDelete = Database.People.FirstOrDefault(x => x.ID == id);
 
             if (personToDelete != null)
             {
@@ -45,10 +45,10 @@ namespace MVCData.Controllers
 
         }
         [HttpPost]
-        public IActionResult GetDetails(string id)
+        public IActionResult GetDetails(int id)
         {
             
-            Person person = Database.People.FirstOrDefault(x => x.Id == id);
+            Person person = Database.People.FirstOrDefault(x => x.ID == id);
 
             if (person == null)
             {

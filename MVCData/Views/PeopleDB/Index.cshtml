@@ -26,9 +26,7 @@
     <div asp-validation-summary="All" class="error-message"></div>
     <fieldset>
         <legend>Add a person</legend>
-        <p>
-            <a asp-action="Create">Add new person</a>
-        </p>
+       
         <div class="field">
             <label asp-for="CreatePerson.Name" for="name"></label>
             <input asp-for="CreatePerson.Name" type="text" id="name" name="name" value="@Model.CreatePerson.Name">
