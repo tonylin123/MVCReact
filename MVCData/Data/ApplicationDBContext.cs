@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MVCData.ViewModels;
 using System.Reflection.Emit;
+using MVCData.Data;
 
 
 namespace MVCData.Data
@@ -47,12 +48,11 @@ namespace MVCData.Data
             modelbuilder.Entity<Language>().HasData(new Language { ID = 3, Name = "Swedish" });
 
 
-            modelbuilder.Entity<Person>().HasData(new Person { ID = 1, Name = "Tony", Phone = "123289", CityID = 1 });
-
-            modelbuilder.Entity<Person>().HasData(new Person { ID = 2, Name = "Tony Stark", Phone = "12345", CityID = 2 });
-            modelbuilder.Entity<Person>().HasData(new Person { ID = 3, Name = "Captain America", Phone = "3213213", CityID = 2 });
-
-            modelbuilder.Entity<Person>().HasData(new Person { ID = 4, Name = "KrallLexicon", Phone = "78998554", CityID = 3 });
+            modelbuilder.Entity<Person>().HasData(new { ID = 1, Name = "Tony", Phone = "123289",CityID = 1 });
+       
+            modelbuilder.Entity<Person>().HasData(new { ID = 2, Name = "Tony Stark", Phone = "12345", CityID = 2 });
+            modelbuilder.Entity<Person>().HasData(new { ID = 3, Name = "Captain America", Phone = "3213213", CityID = 2 });
+            modelbuilder.Entity<Person>().HasData(new { ID = 4, Name = "KrallLexicon", Phone = "78998554", CityID = 3 });
 
             //Mandarin
             modelbuilder.Entity<Person>()

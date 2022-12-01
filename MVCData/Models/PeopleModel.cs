@@ -1,10 +1,12 @@
 ﻿using MVCData.ViewModels;
 using MVCData.Models;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using MVCData.Data;
+using System.Data;
 
 namespace MVCData.Models
 {
-    public static class PeopleDBModel
+    public static class PeopleModel
     {
         public static List<Person> Search(List<Person> list, string keyword)
         {

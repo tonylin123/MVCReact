@@ -1,5 +1,6 @@
 ﻿using MVCData.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVCData.ViewModels
 {
@@ -13,16 +14,17 @@ namespace MVCData.ViewModels
 
         
 
-        public Person(string name, string phone, City city, List<Language> languages)
+        public Person(string name, string phone, City city)
         {
 
             Name = name;
             Phone = phone;
             City = city;
-            Languages = languages;
+            
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public string Name { get; set; } 
 

@@ -9,7 +9,7 @@
 
 <h1>People Search</h1>
 
-<form asp-controller="PeopleDB" asp-action="Search" method="post" class="search people">
+<form asp-controller="People" asp-action="Search" method="post" class="search people">
     <fieldset>
         <legend>Search for people</legend>
 
@@ -22,7 +22,7 @@
 
 
 
-<form asp-controller="PeopleDB" asp-action="CreatePerson" method="post" class="create person">
+<form asp-controller="People" asp-action="CreatePerson" method="post" class="create person">
     <div asp-validation-summary="All" class="error-message"></div>
     <fieldset>
         <legend>Add a person</legend>
@@ -41,7 +41,7 @@
 
         <div class="field">
             <label asp-for="CreatePerson.City" for="city"></label>
-            <input asp-for="CreatePerson.City" type="text" id="city" name="city" value="@Model.CreatePerson.City">
+            <select name="city" asp-for="CreatePerson.City" asp-items="@Model.CreatePerson.SelectCity" selected="@Model.CreatePerson.City"></select>
             <span asp-validation-for="CreatePerson.City"></span>
         </div>
 
@@ -67,7 +67,7 @@
                 <td>@person.Name</td>
                 <td>@person.Phone</td>
                 <td>@person.City</td>
-                <td><a class="delete" asp-controller="PeopleDB" asp-action="DeletePerson" asp-route-name=@person.Name>Delete</a></td>
+                <td><a class="delete" asp-controller="People" asp-action="DeletePerson" asp-route-name=@person.Name>Delete</a></td>
             </tr>
         }
     </tbody>

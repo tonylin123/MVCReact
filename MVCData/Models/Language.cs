@@ -17,10 +17,10 @@ namespace MVCData.Models
         }
 
         [Key]
-        
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; } 
 
         public List<Person> People { get; set; } = new List<Person>();
     }
