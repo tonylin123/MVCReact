@@ -16,7 +16,7 @@ namespace MVCData.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+     
         public int ID { get; set; }
 
         public string Name { get; set; } 

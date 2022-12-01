@@ -1,6 +1,7 @@
 ﻿@model Person
 @{
     Layout = null;
+
 }
 @if (Model == null)
 {
@@ -23,7 +24,7 @@ else
             <div class="col"><span>@Model.ID</span></div>
             <div class="col"><span>@Model.Name</span></div>
             <div class="col"><span>@Model.Phone</span></div>
-            <div class="col"><span>@Model.City</span></div>
+            <div class="col"><span>@Model.City.Name</span></div>
         </div>
     </div>
 }

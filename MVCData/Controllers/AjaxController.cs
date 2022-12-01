@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MVCData.ViewModels;
 using MVCData.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace MVCData.Controllers
 {
@@ -48,7 +49,7 @@ namespace MVCData.Controllers
         public IActionResult GetDetails(int id)
         {
             
-            Person person = Database.People.FirstOrDefault(x => x.ID == id);
+            Person person = Database.People.Include(x => x.City).FirstOrDefault(x => x.ID == id);
 
             if (person == null)
             {

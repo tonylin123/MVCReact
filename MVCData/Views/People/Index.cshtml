@@ -66,7 +66,7 @@
             <tr class="person">
                 <td>@person.Name</td>
                 <td>@person.Phone</td>
-                <td>@person.City</td>
+                <td>@person.City.Name</td>
                 <td><a class="delete" asp-controller="People" asp-action="DeletePerson" asp-route-name=@person.Name>Delete</a></td>
             </tr>
         }
