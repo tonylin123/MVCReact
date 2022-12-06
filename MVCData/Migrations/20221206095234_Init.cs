@@ -22,19 +22,6 @@ namespace MVCData.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Languages",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Languages", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Cities",
                 columns: table => new
                 {
@@ -75,49 +62,20 @@ namespace MVCData.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "LanguagePerson",
-                columns: table => new
-                {
-                    LanguagesID = table.Column<int>(type: "int", nullable: false),
-                    PeopleID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LanguagePerson", x => new { x.LanguagesID, x.PeopleID });
-                    table.ForeignKey(
-                        name: "FK_LanguagePerson_Languages_LanguagesID",
-                        column: x => x.LanguagesID,
-                        principalTable: "Languages",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LanguagePerson_People_PeopleID",
-                        column: x => x.PeopleID,
-                        principalTable: "People",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.InsertData(
+                table: "Countries",
+                columns: new[] { "ID", "Name" },
+                values: new object[] { 1, "China" });
 
             migrationBuilder.InsertData(
                 table: "Countries",
                 columns: new[] { "ID", "Name" },
-                values: new object[,]
-                {
-                    { 1, "China" },
-                    { 2, "USA" },
-                    { 3, "Sweden" }
-                });
+                values: new object[] { 2, "USA" });
 
             migrationBuilder.InsertData(
-                table: "Languages",
+                table: "Countries",
                 columns: new[] { "ID", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Mandarin" },
-                    { 2, "English" },
-                    { 3, "Swedish" }
-                });
+                values: new object[] { 3, "Sweden" });
 
             migrationBuilder.InsertData(
                 table: "Cities",
@@ -145,30 +103,10 @@ namespace MVCData.Migrations
                     { 4, 3, "KrallLexicon", "78998554" }
                 });
 
-            migrationBuilder.InsertData(
-                table: "LanguagePerson",
-                columns: new[] { "LanguagesID", "PeopleID" },
-                values: new object[,]
-                {
-                    { 1, 1 },
-                    { 1, 2 },
-                    { 2, 1 },
-                    { 2, 2 },
-                    { 2, 3 },
-                    { 3, 2 },
-                    { 3, 3 },
-                    { 3, 4 }
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Cities_CountryID",
                 table: "Cities",
                 column: "CountryID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LanguagePerson_PeopleID",
-                table: "LanguagePerson",
-                column: "PeopleID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_People_CityID",
@@ -178,12 +116,6 @@ namespace MVCData.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "LanguagePerson");
-
-            migrationBuilder.DropTable(
-                name: "Languages");
-
             migrationBuilder.DropTable(
                 name: "People");
 

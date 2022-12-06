@@ -31,6 +31,6 @@ namespace MVCData.ViewModels
         public string Phone { get; set; }
 
         public City City { get; set; } = new City();
-        public List<Language> Languages { get; set; } = new List<Language>();
+       
     }
 }
