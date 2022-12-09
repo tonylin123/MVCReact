@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCData.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20221209085453_Added Identity")]
-    partial class AddedIdentity
+    [Migration("20221209124855_Add Identity")]
+    partial class AddIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,15 +53,15 @@ namespace MVCData.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a6d50bdc-8cd6-4551-a34b-987f6e9d328f",
-                            ConcurrencyStamp = "8619f59d-1072-46ed-bb30-6e7b6c08dafd",
+                            Id = "c49e409a-f74e-444e-8093-86b8e8e72e07",
+                            ConcurrencyStamp = "cb228b72-b865-4bc7-b0b5-750bafd96e9f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "c687d47c-bfb7-4ca4-88cf-4cbb50b1cb56",
-                            ConcurrencyStamp = "b3770a6b-84c0-435a-ad49-40ebc25c51bf",
+                            Id = "2e8b62ad-309f-414d-b2fe-f85d59381ca4",
+                            ConcurrencyStamp = "89c63bf2-0984-4c2d-947b-e65d23ad2b75",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -158,8 +158,8 @@ namespace MVCData.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "b388c3d5-7fbd-4549-a886-78c0cdeaa8b2",
-                            RoleId = "a6d50bdc-8cd6-4551-a34b-987f6e9d328f"
+                            UserId = "2004d6f0-90a7-40cf-bd31-7851384bd7a1",
+                            RoleId = "c49e409a-f74e-444e-8093-86b8e8e72e07"
                         });
                 });
 
@@ -194,6 +194,10 @@ namespace MVCData.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateOfBirth")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -259,9 +263,10 @@ namespace MVCData.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b388c3d5-7fbd-4549-a886-78c0cdeaa8b2",
+                            Id = "2004d6f0-90a7-40cf-bd31-7851384bd7a1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "160975df-2ca8-4971-a312-d1e8693a583b",
+                            ConcurrencyStamp = "e4cc39c4-dba8-4f1c-aff6-a829824f51c9",
+                            DateOfBirth = "20221209",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -269,9 +274,9 @@ namespace MVCData.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE6EXpdHf+JkCud5MaOGyZxY8RGu7/u7E6GPGo3lXPWiFdaVY1QEN5zqabTfl/y12w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEANRJkmz5FwkcGtnqHE2p4QlKyn2cHu3rfKrmGxdLLiikAKYQjSmE9pOjiUQUOcjQw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b843f9dd-3bc6-4caa-91a6-f7ec2944192d",
+                            SecurityStamp = "0070591a-15d4-4728-953e-10cd4843633e",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });

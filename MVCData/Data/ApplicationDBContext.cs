@@ -83,6 +83,7 @@ namespace MVCData.Data
                 NormalizedUserName = "ADMIN@ADMIN.COM",
                 FirstName = "Admin",
                 LastName = "Adminsson",
+                DateOfBirth = "20221209",
                 PasswordHash = hasher.HashPassword(null, "password")
             });
 

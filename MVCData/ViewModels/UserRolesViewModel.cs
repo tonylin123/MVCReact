@@ -1,4 +1,4 @@
-﻿namespace MVCData.Models
+﻿namespace MVCData.ViewModels
 {
     public class UserRolesViewModel
     {
@@ -6,6 +6,6 @@
 
         public string UserId { get; set; }
 
-        public List<string> Roles { get; set; } = new List<string>(); 
+        public List<string> Roles { get; set; } = new List<string>();
     }
 }
