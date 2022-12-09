@@ -20,10 +20,18 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="Home" asp-action="About">About</a>
                     </li>
-                    
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Ajax" asp-action="Index">Ajax</a>
+                    </li>
+
+                   
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="People" asp-action="Index">People</a>
                     </li>
+                    
+
+                            
 
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="Cities" asp-action="Index">Cities</a>
@@ -31,13 +39,25 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="Countries" asp-action="Index">Countries</a>
                     </li>
-
-                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Ajax" asp-action="Index">Ajax</a>
-                    </li>
-                    
-                   
+                     @if(User.IsInRole("Admin"))
+                    {    
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Identity
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-controller="Identity" asp-action="ShowAllUsers">Show all users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-controller="Identity" asp-action="ShowAllRoles">Show all roles</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                      
                 </ul>
+                <partial name="_LoginPartial" />
             </div>
         </nav>
     </header>
@@ -45,7 +65,9 @@
         @RenderBody()
     </div>
     <footer class="container-fluid">@DateTime.Now</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
+    @await RenderSectionAsync("Scripts", required:false)
 </body>
 </html>

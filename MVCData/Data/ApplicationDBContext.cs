@@ -3,11 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using MVCData.ViewModels;
 using System.Reflection.Emit;
 using MVCData.Data;
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MVCData.Data
 {
-    public class ApplicationDBContext :DbContext
+    public class ApplicationDBContext :IdentityDbContext<ApplicationUser>
     {
         public ApplicationDBContext()
         {
@@ -51,14 +52,46 @@ namespace MVCData.Data
             modelbuilder.Entity<Person>().HasData(new { ID = 3, Name = "Captain America", Phone = "3213213", CityID = 2 });
             modelbuilder.Entity<Person>().HasData(new { ID = 4, Name = "KrallLexicon", Phone = "78998554", CityID = 3 });
 
-         
-          
 
-           
-            
-         
+            string adminRoleId = Guid.NewGuid().ToString();
+            string userRoleId = Guid.NewGuid().ToString();
+            string userId = Guid.NewGuid().ToString();
 
-            
+            modelbuilder.Entity<IdentityRole>().HasData(
+               new IdentityRole
+               {
+                   Id = adminRoleId,
+                   Name = "Admin",
+                   NormalizedName = "ADMIN"
+               });
+            modelbuilder.Entity<IdentityRole>().HasData(
+              new IdentityRole
+              {
+                  Id = userRoleId,
+                  Name = "User",
+                  NormalizedName = "USER"
+              });
+
+            PasswordHasher<ApplicationUser> hasher = new PasswordHasher<ApplicationUser>();
+
+            modelbuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
+            {
+                Id = userId,
+                Email = "admin@admin.com",
+                NormalizedEmail = "ADMIN@ADMIN.COM",
+                UserName = "admin@admin.com",
+                NormalizedUserName = "ADMIN@ADMIN.COM",
+                FirstName = "Admin",
+                LastName = "Adminsson",
+                PasswordHash = hasher.HashPassword(null, "password")
+            });
+
+            modelbuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = adminRoleId,
+                UserId = userId
+            });
+
 
 
         }

@@ -3,7 +3,7 @@ using MVCData.ViewModels;
 using MVCData.Models;
 using MVCData.Data;
 using Microsoft.EntityFrameworkCore;
-using MVCData.ViewModels;
+
 
 namespace MVCData.Controllers
 {
