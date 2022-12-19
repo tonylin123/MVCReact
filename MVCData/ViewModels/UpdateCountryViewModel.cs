@@ -5,10 +5,15 @@ using MVCData.Models;
 
 namespace MVCData.ViewModels
 {
-    public class CreateCountryViewModel
+    public class UpdateCountryViewModel
     {
+        [HiddenInput]
+        [Required]
+       
+        public int ID { get; set; } = 0;
+
         [Required]
         [Display(Name = "Name of country")]
-        public string Name { get; set; } 
+        public string Name { get; set; } = string.Empty;
     }
 }

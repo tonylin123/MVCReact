@@ -4,9 +4,13 @@ using MVCData.Models;
 using MVCData.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Collections.Generic;
 
 namespace MVCData.Controllers
 {
+    [Authorize]
     public class PeopleController : Controller
     {
 
@@ -38,7 +42,7 @@ namespace MVCData.Controllers
         }
 
 
-        [HttpPost]
+    [HttpPost]
     public IActionResult Search(string search)
     {
         ViewModelsContainer viewModels = new()
@@ -92,8 +96,60 @@ namespace MVCData.Controllers
             return View("Index", viewModels);
         }
 
+        public IActionResult UpdatePerson(int id = 0)
+        {
+            UpdatePersonViewModel viewModel = new();
+            bool personExists = Database.People.Select(p => p.ID).ToList().Contains(id);
 
-    [HttpGet]
+            if (personExists)
+            {
+                Person person = Database.People
+                .Include(p => p.City)
+                
+                .Where(p => p.ID == id)
+                .ToList()
+                .FirstOrDefault();
+
+                viewModel.ID = person!.ID;
+                viewModel.Name = person.Name;
+                viewModel.Phone = person.Phone;
+                viewModel.City = person.City.ID;
+                viewModel.SelectCity = new SelectList(Database.Cities, "ID", "Name");
+               
+            }
+
+            return View(viewModel);
+        }
+
+
+
+        [HttpPost]
+        public IActionResult UpdatePerson(UpdatePersonViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Person person = Database.People.Include(p => p.City).Where(p => p.ID == model.ID).ToList().First();
+
+                person.Name = model.Name;
+                person.Phone = model.Phone;
+                person.City = Database.Cities.Where(c => c.ID == model.City).ToList().First();
+
+                
+
+                Database.Update(person);
+                Database.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                model.SelectCity = new SelectList(Database.Cities, "ID", "Name");
+             
+                return View(model);
+            }
+        }
+
+        [HttpGet]
     public IActionResult DeletePerson(string name)
     {
             var personToDelete = Database.People.FirstOrDefault(p => p.Name == name);

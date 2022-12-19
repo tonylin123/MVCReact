@@ -67,6 +67,7 @@
                 <td>@person.Name</td>
                 <td>@person.Phone</td>
                 <td>@person.City.Name</td>
+                <td><a class="edit" asp-controller="People" asp-action="UpdatePerson" asp-route-id="@person.ID">Edit</a></td>
                 <td><a class="delete" asp-controller="People" asp-action="DeletePerson" asp-route-name=@person.Name>Delete</a></td>
             </tr>
         }
@@ -77,6 +78,7 @@
     <div class="col">Name</div>
     <div class="col">Telephone</div>
     <div class="col">City</div>
+    <div class="col"></div>
     <div class="col"></div>
 </div>
     @foreach (Person person in Model.People.List)

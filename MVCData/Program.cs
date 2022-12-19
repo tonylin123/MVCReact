@@ -22,7 +22,15 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDBContext>();
-
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequiredUniqueChars = 1;
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredLength = 6;
+});
 
 builder.Services.AddRazorPages();
 

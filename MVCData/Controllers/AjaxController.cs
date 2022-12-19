@@ -3,12 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 using MVCData.ViewModels;
 using MVCData.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace MVCData.Controllers
 {
+    [Authorize]
     public class AjaxController : Controller
     {
         readonly ApplicationDBContext Database;
+
         public AjaxController(ApplicationDBContext database)
         {
             Database = database;
@@ -60,7 +64,7 @@ namespace MVCData.Controllers
 
 
     }
-
+ 
 
 
 }

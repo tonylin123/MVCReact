@@ -8,7 +8,7 @@ using MVCData.ViewModels;
 
 namespace MVCData.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    
     public class IdentityController : Controller
     {
         readonly RoleManager<IdentityRole> _roleManager;

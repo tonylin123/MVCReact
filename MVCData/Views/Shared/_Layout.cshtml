@@ -28,12 +28,12 @@
                     </li>
                     }
 
-                  @if (User.IsInRole("Admin"))
-                  {
+                  
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="Ajax" asp-action="Index">Ajax</a>
                     </li>
-
+                    @if ( User.IsInRole("Admin"))
+                    {
 
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="Cities" asp-action="Index">Cities</a>
@@ -55,8 +55,8 @@
                                 </li>
                             </ul>
                         </li>
-                   }
-                      
+
+                    }
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
