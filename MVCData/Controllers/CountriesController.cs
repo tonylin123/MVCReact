@@ -3,9 +3,7 @@ using MVCData.Data;
 using MVCData.Models;
 using MVCData.ViewModels;
 using Microsoft.AspNetCore.Authorization;
-using MVCData.Data;
-using MVCData.Models;
-using MVCData.ViewModels;
+
 
 namespace MVCData.Controllers
 {

@@ -7,7 +7,7 @@ namespace MVCData.ViewModels
 {
     public class UpdateCountryViewModel
     {
-        [HiddenInput]
+       
         [Required]
        
         public int ID { get; set; } = 0;
