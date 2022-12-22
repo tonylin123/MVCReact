@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVData.ViewModels;
+using System;
 
 
 
@@ -21,7 +22,11 @@ namespace MVCData.ViewModels
         public UpdateCityViewModel UpdateCity { get; set; } = new();
 
 
+        public LanguagesViewModel Languages { get; set; } = new();
 
+        public CreateLanguageViewModel CreateLanguage { get; set; } = new();
+
+        public UpdateLanguageViewModel UpdateLanguage { get; set; } = new();
 
 
 

@@ -15,8 +15,13 @@ namespace MVCData.ViewModels
 
         [Required]
         [Display(Name = "Enter your city")]
-        public string City { get; set; } 
+        public int City { get; set; } 
 
         public SelectList? SelectCity { get; set; }
+
+        [Display(Name = " Languages ")]
+        
+        public List<int> Languages { get; set; } = new List<int>();
+        public MultiSelectList? SelectLanguages { get; set; }
     }
 }

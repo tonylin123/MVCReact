@@ -4,6 +4,7 @@ using MVCData.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCData.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20221222101505_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,15 +110,15 @@ namespace MVCData.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b60da16c-50be-4507-a85e-a1a10604e96d",
-                            ConcurrencyStamp = "d49b83eb-6dc0-464e-8f0d-f96f7ef5e6dd",
+                            Id = "826f822b-1659-4002-ad44-e456aea8cf8a",
+                            ConcurrencyStamp = "853752b9-62fa-42b7-aae2-9d03ce0490f9",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "d1dc7296-3dc1-45bf-9ffc-705501adc613",
-                            ConcurrencyStamp = "659fed01-2094-4bde-a56b-04a0109f7dca",
+                            Id = "bb212a14-e6ae-46a4-bdd4-4dc66e2e740d",
+                            ConcurrencyStamp = "6fdfa75f-3f1e-4a9a-b6a9-dee52f62d5ee",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -213,8 +215,8 @@ namespace MVCData.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "819b6d0a-1ae4-4852-bcea-088cac48db8d",
-                            RoleId = "b60da16c-50be-4507-a85e-a1a10604e96d"
+                            UserId = "b34277b1-aa6e-4879-90f5-f123820b5052",
+                            RoleId = "826f822b-1659-4002-ad44-e456aea8cf8a"
                         });
                 });
 
@@ -318,9 +320,9 @@ namespace MVCData.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "819b6d0a-1ae4-4852-bcea-088cac48db8d",
+                            Id = "b34277b1-aa6e-4879-90f5-f123820b5052",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cc9095f6-3573-4f4d-840f-9c9a42646680",
+                            ConcurrencyStamp = "4e23e602-8566-4958-a0ef-4e840a2b5995",
                             DateOfBirth = "20221209",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
@@ -329,9 +331,9 @@ namespace MVCData.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEJlhDTccehr+ZIeAubnogJ3iGYmcid1ZUTlgZGQrHZ/oO0kTqmwH5cnUOUso9Rdvw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECHHNbiHmB/ur8H+iGdBI5csz1Qr3eL1AbyecE+StsiDVGz0OilLsuBQkPQ8aXd8LQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a58caa33-0a0b-40e3-929f-bfa2f8b23d88",
+                            SecurityStamp = "97d44b0c-ded9-4d74-927f-61afa9fc9a2a",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });

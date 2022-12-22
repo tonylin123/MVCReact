@@ -58,42 +58,27 @@ namespace MVCData.Controllers
     }
 
 
-    [HttpPost]
-   
-    public IActionResult CreatePerson(CreatePersonViewModel person)
+        [HttpPost]
+        public IActionResult CreatePerson(CreatePersonViewModel model)
         {
-            int cityID = int.Parse(person.City);
-            bool cityExists = Database.Cities.ToList().Exists(c => c.ID == cityID);
-
-            CreatePersonViewModel createPerson = new()
+            if (ModelState.IsValid)
             {
-                SelectCity = new SelectList(Database.Cities, "ID", "Name")
-            };
+                City city = Database.Cities.Where(c => c.ID == model.City).ToList().First();
+                List<Language> languages = (model.Languages == null) ? new List<Language>() : Database.Languages.Where(l => model.Languages.Contains(l.ID)).ToList();
 
-            if (ModelState.IsValid && cityExists)
-            {
-                City city = Database.Cities.Where(c => c.ID == cityID).ToList().First();
-                Person newPerson = new(person.Name, person.Phone, city);
-                Database.People.Add(newPerson);
+                Person person = new(model.Name, model.Phone, city, languages);
+
+                Database.People.Add(person);
                 Database.SaveChanges();
+
+                return RedirectToAction("Index");
             }
             else
             {
-                createPerson.Name = person.Name;
-                createPerson.Phone = person.Phone;
-                createPerson.City = person.City;
+                model.SelectCity = new SelectList(Database.Cities, "ID", "Name");
+                model.SelectLanguages = new MultiSelectList(Database.Languages, "ID", "Name");
+                return View(model);
             }
-
-            ViewModelsContainer viewModels = new()
-            {
-                People = new PeopleViewModel()
-                {
-                    List = Database.People.Include(p => p.City).ToList(),
-                },
-                CreatePerson = createPerson
-            };
-
-            return View("Index", viewModels);
         }
 
         public IActionResult UpdatePerson(int id = 0)
@@ -103,9 +88,9 @@ namespace MVCData.Controllers
 
             if (personExists)
             {
-                Person person = Database.People
+                Person? person = Database.People
                 .Include(p => p.City)
-                
+                .Include(p => p.Languages)
                 .Where(p => p.ID == id)
                 .ToList()
                 .FirstOrDefault();
@@ -115,7 +100,8 @@ namespace MVCData.Controllers
                 viewModel.Phone = person.Phone;
                 viewModel.City = person.City.ID;
                 viewModel.SelectCity = new SelectList(Database.Cities, "ID", "Name");
-               
+                viewModel.Languages = person.Languages.Select(l => l.ID).ToList();
+                viewModel.SelectLanguages = new MultiSelectList(Database.Languages, "ID", "Name");
             }
 
             return View(viewModel);
@@ -128,13 +114,15 @@ namespace MVCData.Controllers
         {
             if (ModelState.IsValid)
             {
-                Person person = Database.People.Include(p => p.City).Where(p => p.ID == model.ID).ToList().First();
+                Person person = Database.People.Include(p => p.Languages).Where(p => p.ID == model.ID).ToList().First();
 
                 person.Name = model.Name;
                 person.Phone = model.Phone;
                 person.City = Database.Cities.Where(c => c.ID == model.City).ToList().First();
 
-                
+                person.Languages.Clear();
+                List<Language> selectedLanguages = (model.Languages == null) ? new List<Language>() : Database.Languages.Where(l => model.Languages.Contains(l.ID)).ToList();
+                person.Languages.AddRange(selectedLanguages);
 
                 Database.Update(person);
                 Database.SaveChanges();
@@ -144,7 +132,7 @@ namespace MVCData.Controllers
             else
             {
                 model.SelectCity = new SelectList(Database.Cities, "ID", "Name");
-             
+                model.SelectLanguages = new MultiSelectList(Database.Languages, "ID", "Name");
                 return View(model);
             }
         }

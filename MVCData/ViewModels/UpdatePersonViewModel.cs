@@ -30,6 +30,12 @@ namespace MVCData.ViewModels
         public SelectList? SelectCity { get; set; }
 
 
+        [Display(Name = "Languages ")]
+        
+        public List<int> Languages { get; set; } = new List<int>();
+        public MultiSelectList? SelectLanguages { get; set; }
+
+
 
     }
 
