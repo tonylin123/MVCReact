@@ -2,7 +2,12 @@
 
 @functions
 {
-    
+    public static string CapitalizeFirstLetter(string word)
+    {
+
+        string capitalizeFirst = word[0].ToString().ToUpper() + word.Substring(1);
+        return capitalizeFirst;
+    }
 
     public static string GetLanguageString(Person person)
     {

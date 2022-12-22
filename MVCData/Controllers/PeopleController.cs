@@ -30,11 +30,12 @@ namespace MVCData.Controllers
             {
                 People = new PeopleViewModel()
                 {
-                    List = Database.People.Include(p => p.City).ToList(),
+                    List = Database.People.Include(p => p.City).Include(p => p.Languages).ToList(),
                 },
                 CreatePerson = new CreatePersonViewModel()
                 {
-                    SelectCity = new SelectList(Database.Cities, "ID", "Name")
+                    SelectCity = new SelectList(Database.Cities, "ID", "Name"),
+                    SelectLanguages = new MultiSelectList(Database.Languages, "ID", "Name")
                 }
             };
 
@@ -42,20 +43,25 @@ namespace MVCData.Controllers
         }
 
 
-    [HttpPost]
-    public IActionResult Search(string search)
-    {
-        ViewModelsContainer viewModels = new()
+        [HttpPost]
+        public IActionResult Search(string search)
         {
-            People = new PeopleViewModel()
+            ViewModelsContainer viewModels = new()
             {
+                People = new PeopleViewModel()
+                {
                 Search = search,
-                List = PeopleModel.Search(Database.People.ToList(), search)
-            }
-        };
+                List = Database.People
+                .Include(p => p.City)
+                .Include(p => p.Languages)
+                .Where(p => p.Name.Contains(search) || p.Phone.Contains(search) || p.City.Name.Contains(search)).ToList(),
+            },
 
-        return View("Index", viewModels);
-    }
+
+            };
+
+            return View("Index", viewModels);
+        }
 
 
         [HttpPost]

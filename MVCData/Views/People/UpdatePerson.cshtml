@@ -37,6 +37,11 @@ else
                 <span asp-validation-for="City"></span>
             </div>
 
+            <div class="field">
+                <label asp-for="Languages" for="languages"></label>
+                <select asp-for="Languages" name="languages" asp-items="@Model.SelectLanguages" multiple></select>
+                <span asp-validation-for="Languages"></span>
+            </div>
             
 
             <input type="submit" name="submit" value="Update" class="submit">
