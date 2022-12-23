@@ -22,15 +22,13 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDBContext>();
-builder.Services.Configure<IdentityOptions>(options =>
+
+builder.Services.AddCors(p => p.AddPolicy("corsPolicy", builder =>
 {
-    options.Password.RequireDigit = true;
-    options.Password.RequireNonAlphanumeric = true;
-    options.Password.RequireLowercase = true;
-    options.Password.RequiredUniqueChars = 1;
-    options.Password.RequireUppercase = true;
-    options.Password.RequiredLength = 6;
-});
+    builder.WithOrigins("http://localhost:3000")
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+}));
 
 builder.Services.AddRazorPages();
 
@@ -40,6 +38,7 @@ app.UseSession();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseCors("corsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();

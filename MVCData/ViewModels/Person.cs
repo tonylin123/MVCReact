@@ -21,6 +21,7 @@ namespace MVCData.ViewModels
             Phone = phone;
             City = city;
             Languages = languages;
+           
         }
 
         [Key]
@@ -31,6 +32,7 @@ namespace MVCData.ViewModels
         public string Phone { get; set; }
 
         public City City { get; set; } = new City();
+        
         public List<Language> Languages { get; set; } = new List<Language>();
 
     }
