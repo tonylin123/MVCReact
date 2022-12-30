@@ -1,65 +1,65 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using MVCData.Data;
-using MVCData.ViewModels;
-using MVCData.Models;
-using Newtonsoft.Json;
-using System.Text.Json.Nodes;
+﻿//using Microsoft.AspNetCore.Http;
+//using Microsoft.AspNetCore.Mvc;
+//using MVCData.Data;
+//using MVCData.ViewModels;
+//using MVCData.Models;
+//using Newtonsoft.Json;
+//using System.Text.Json.Nodes;
 
-namespace MVCData.Controllers
-{
-    [Route("api/[controller]")]
-    [ApiController]
-    
-    public class ReactController : ControllerBase
-    {
-        readonly ApplicationDBContext _context;
+//namespace MVCData.Controllers
+//{
+//    [Route("api/[controller]")]
+//    [ApiController]
 
-        public ReactController(ApplicationDBContext context)
-        {
-            _context = context;
-        }
+//    public class ReactController : ControllerBase
+//    {
+//        readonly ApplicationDBContext _context;
 
-        [HttpGet]
-        public List<Person> GetPeople()
-        {
-            List<Person> people = new List<Person>();
-            people = _context.People.ToList();
-            return people;
-        }
+//        public ReactController(ApplicationDBContext context)
+//        {
+//            _context = context;
+//        }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            var person = _context.People.Find(id);
+//        [HttpGet]
+//        public List<Person> GetPeople()
+//        {
+//            List<Person> people = new List<Person>();
+//            people = _context.People.ToList();
+//            return people;
+//        }
 
-            if (person != null)
-            {
-                _context.People.Remove(person);
-                _context.SaveChanges();
+//        [HttpDelete("{id}")]
+//        public IActionResult Delete(int id)
+//        {
+//            var person = _context.People.Find(id);
 
-                return StatusCode(200);
-            }
-            return StatusCode(404);
-        }
+//            if (person != null)
+//            {
+//                _context.People.Remove(person);
+//                _context.SaveChanges();
 
-        [HttpPost("create")]
-        public IActionResult Create(JsonObject person)
-        {
-            string jsonPerson = person.ToString();
+//                return StatusCode(200);
+//            }
+//            return StatusCode(404);
+//        }
 
-            Person personToCreate = JsonConvert.DeserializeObject<Person>(jsonPerson);
+//        [HttpPost("create")]
+//        public IActionResult Create(JsonObject person)
+//        {
+//            string jsonPerson = person.ToString();
 
-            if (personToCreate != null)
-            {
-                _context.People.Add(personToCreate);
-                _context.SaveChanges();
+//            Person personToCreate = JsonConvert.DeserializeObject<Person>(jsonPerson);
 
-                return StatusCode(200);
-            }
-            return StatusCode(404);
+//            if (personToCreate != null)
+//            {
+//                _context.People.Add(personToCreate);
+//                _context.SaveChanges();
+
+//                return StatusCode(200);
+//            }
+//            return StatusCode(404);
 
 
-        }
-    }
-}
+//        }
+//    }
+//}

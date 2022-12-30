@@ -23,6 +23,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDBContext>();
 
+
 builder.Services.AddCors(p => p.AddPolicy("corsPolicy", builder =>
 {
     builder.WithOrigins("http://localhost:3000")
