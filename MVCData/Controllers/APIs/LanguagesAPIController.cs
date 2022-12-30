@@ -7,7 +7,7 @@ using MVCData.Data;
 using MVCData.Models.DTOs;
 using System;
 
-namespace MVCBasics.Controllers
+namespace MVCData.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
